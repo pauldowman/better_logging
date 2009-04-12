@@ -45,12 +45,8 @@ And here's how it would look with the better_logging plugin installed in product
 akash.27471   Processing PeopleController#show (for 127.0.0.1 at 2009-04-12 13:27:04) [GET]
 akash.27471   13:27:04  INFO   Session ID: 7eeb00aa62b395698a28bf033e56b7c5
 akash.27471   13:27:04  INFO   Parameters: {"action"=>"show", "id"=>"pauldowman", "controller"=>"people"}
-akash.27471   13:27:04  DEBUG  User Load (0.4ms)   SELECT * FROM `users` WHERE (string_id = 'pauldowman') LIMIT 1
-akash.27471   13:27:04  DEBUG  User Columns (2.1ms)   SHOW FIELDS FROM `users`
 akash.27471   13:27:04  INFO   Rendering template within layouts/application
 akash.27471   13:27:04  INFO   Rendering people/show
-akash.27471   13:27:04  DEBUG  Rendered layouts/_head (3.1ms)
-akash.27471   13:27:04  DEBUG  Rendered layouts/_navigation (2.2ms)
 akash.27471   13:27:04  INFO   Adding Cache-Control header
 akash.27471   13:27:04  INFO   Completed in 164ms (View: 116, DB: 21) | 200 OK [http://localhost/people/pauldowman]
 </pre>
@@ -62,12 +58,8 @@ And here's how it would look in production mode on a host with a long name name:
 igserver-7.27471   Processing PeopleController#show (for 127.0.0.1 at 2009-04-12 13:27:04) [GET]
 igserver-7.27471   13:27:04  INFO   Session ID: 7eeb00aa62b395698a28bf033e56b7c5
 igserver-7.27471   13:27:04  INFO   Parameters: {"action"=>"show", "id"=>"pauldowman", "controller"=>"people"}
-igserver-7.27471   13:27:04  DEBUG  User Load (0.4ms)   SELECT * FROM `users` WHERE (string_id = 'pauldowman') LIMIT 1
-igserver-7.27471   13:27:04  DEBUG  User Columns (2.1ms)   SHOW FIELDS FROM `users`
 igserver-7.27471   13:27:04  INFO   Rendering template within layouts/application
 igserver-7.27471   13:27:04  INFO   Rendering people/show
-igserver-7.27471   13:27:04  DEBUG  Rendered layouts/_head (3.1ms)
-igserver-7.27471   13:27:04  DEBUG  Rendered layouts/_navigation (2.2ms)
 igserver-7.27471   13:27:04  INFO   Adding Cache-Control header
 igserver-7.27471   13:27:04  INFO   Completed in 164ms (View: 116, DB: 21) | 200 OK [http://localhost/people/pauldowman]
 </pre>
