@@ -72,12 +72,14 @@ igserver-7.27471   13:27:04  INFO   Adding Cache-Control header
 igserver-7.27471   13:27:04  INFO   Completed in 164ms (View: 116, DB: 21) | 200 OK [http://localhost/people/pauldowman]
 </pre>
 
-Note that the hostname & pid is added to the beginning of each line of a multi-line log statement. So even if you call logger.error() with a string that has newlines in it, the host & pid will be added to each line, not only the first. This is so that you can filter your log with a regular expression like /^igserver-7\.27471/ and not miss lines.
+Note that the hostname & pid is added to the beginning of each line of a multi-line log statement. So even if you call logger.error() with a string that has newlines in it, the host & pid will be added to each line, not only the first. 
+
+This is so that you can filter your log with a regular expression like /^igserver-7\.27471/ and not miss lines.
 
 
 h2. Improved warn() and error() methods
 
-The warn() and error() methods now allow an Exception object to be given as an optional second parameter. If the exception is given, then the stack trace will be automatically printed.
+The warn() and error() methods now allow an Exception object to be given as an optional second parameter. If the exception is given, then the stack trace will be automatically logged.
 
 For example: 
 
@@ -89,7 +91,7 @@ For example:
   end
 </pre>
 
-The above code will print "Oops we caught an exception", and then print the stack trace. 
+The above code will log "Oops we caught an exception", and then log the stack trace. 
 
 
 h2. Why?
@@ -125,7 +127,7 @@ h2. Installation
 
 h2. Configuration
 
-By default it behaves differently in development mode, it doesn't print the time, process id or hostname. If RAILS_ENV is not "development" those will be printed.
+By default it behaves differently in development mode, it doesn't log the time, process id or hostname. If RAILS_ENV is not "development" those will be logged.
 
 There are two options that can be set, add these lines to an initializer:
 
