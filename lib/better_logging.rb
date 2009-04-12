@@ -63,7 +63,7 @@ module PaulDowman
         if @@full_hostname.length < @@hostname_maxlen
           hostname = @@full_hostname
         else
-          hostname = ".." + @@full_hostname[-(@@hostname_maxlen)..-1]
+          hostname = @@full_hostname[-(@@hostname_maxlen)..-1]
         end
         
         return sprintf("%1$*2$s", "#{hostname}.#{$$}", -(7 + hostname.length))
