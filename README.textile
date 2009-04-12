@@ -116,6 +116,11 @@ There are two options that can be set, add these lines to an initializer:
 * This sets the maximum number of characters of the hostname that will be printed. The beginning of the hostname is truncated, rather than the end, because often the end of the hostname is more unique than the beginning. The default is 10.
 
 
+h2. Viewing log files
+
+On OS X I like to use Console.app to view log files. It can load huge files easily and it can filter based on a regular expression (e.g. you can show only lines from one particular Rails process).
+
+
 h2. Requirements
 
 This has only been tested with Rails 2.2 so far. It probably won't work with Rails 1.x. If you try it with another version, please let me know and I'll update this document (and try to fix the problem).
