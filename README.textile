@@ -1,6 +1,8 @@
 h1. "Better Logging" Rails plugin
 
-This is a Rails plugin that improves the log format.
+This is a Rails plugin that improves the log format, and adds an optional "Exception" parameter to the warn() and error() methods to print a stack trace automatically.
+
+h2. Improved log format
 
 It adds severity level (with colour, if ActiveRecord::Base.colorize_logging == true), hostname and PID to each log line, and it and adds warn() and exception() methods that take an exception as an argument and print the stack trace.
 
@@ -70,6 +72,24 @@ igserver-7.27471   13:27:04  INFO   Adding Cache-Control header
 igserver-7.27471   13:27:04  INFO   Completed in 164ms (View: 116, DB: 21) | 200 OK [http://localhost/people/pauldowman]
 </pre>
 
+Note that the hostname & pid is added to the beginning of each line of a multi-line log statement. So even if you call logger.error() with a string that has newlines in it, the host & pid will be added to each line, not only the first. This is so that you can filter your log with a regular expression like /^igserver-7\.27471/ and not miss lines.
+
+
+h2. Improved warn() and error() methods
+
+The warn() and error() methods now allow an Exception object to be given as an optional second parameter. If the exception is given, then the stack trace will be automatically printed.
+
+For example: 
+
+<pre>
+  begin
+    # do something that raises an exception
+  rescue Exception => e
+    log.error "Oops we caught an exception", e
+  end
+</pre>
+
+The above code will print "Oops we caught an exception", and then print the stack trace. 
 
 
 h2. Why?
