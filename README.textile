@@ -10,7 +10,7 @@ For example, here's how the default format looks:
 
 <pre>
 Session ID: 7eeb00aa62b395698a28bf033e56b7c5
-Parameters: {"action"=>"show", "id"=>"pauldowman", "controller"=>"people"}
+Parameters: {"action"=>"show", "id"=>"1", "controller"=>"people"}
 User Load (0.4ms)   SELECT * FROM `users` WHERE (id = '1') LIMIT 1
 User Columns (2.1ms)   SHOW FIELDS FROM `users`
 Rendering template within layouts/application
