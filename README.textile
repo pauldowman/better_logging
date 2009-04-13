@@ -48,7 +48,7 @@ akash.27471   13:27:04  INFO   Completed in 164ms (View: 116, DB: 21) | 200 OK [
 </pre>
 
 
-And here's how it would look in production mode on a host with a long name. This host name is "myreallybigserver-7.mydomain.com":
+And here's how it would look in production mode on a host with a long name. This host name is "myreallybigserver-7.mydomain.com".
 
 <pre>
 igserver-7.27471   13:27:04  INFO   Session ID: 7eeb00aa62b395698a28bf033e56b7c5
@@ -74,11 +74,11 @@ For example:
   begin
     # do something that raises an exception
   rescue Exception => e
-    log.error "Oops we caught an exception", e
+    log.error "Oops", e
   end
 </pre>
 
-The above code will log "Oops we caught an exception", and then log the stack trace. 
+The above code will log "Oops", and then log the stack trace. 
 
 
 h2. Why?
