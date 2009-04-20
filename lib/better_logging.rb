@@ -54,35 +54,49 @@ module PaulDowman
         @@verbose = boolean
       end
       
+      def self.custom=(string)
+        @@custom = string
+        @@line_prefix = format_line_prefix
+      end
+      
       def self.hostname_maxlen=(integer)
         @@hostname_maxlen = integer
-        @@pid = format_pid_string
+        @@line_prefix = format_line_prefix
       end
             
-      def self.format_pid_string
+      def self.format_line_prefix
         if @@full_hostname.length < @@hostname_maxlen
           hostname = @@full_hostname
         else
           hostname = @@full_hostname[-(@@hostname_maxlen)..-1]
         end
         
-        return sprintf("%1$*2$s", "#{hostname}.#{$$}", -(7 + hostname.length))
+        line_prefix = sprintf("%1$*2$s", "#{hostname}.#{$$}  ", -(7 + hostname.length))
+        line_prefix = "#{@@custom}  #{line_prefix}" if @@custom
+        return line_prefix
+      end
+      
+      def self.get_hostname
+        `hostname -s`.strip
       end
       
       # set some default values:
       @@verbose = RAILS_ENV != "development"
-      @@full_hostname = `hostname -s`.strip
+      @@full_hostname = get_hostname
       @@hostname_maxlen = 10
-      @@pid = format_pid_string
+      @@custom = nil
+      @@line_prefix = format_line_prefix
       
       def add_with_extra_info(severity, message = nil, progname = nil, &block)
         time = @@verbose ? "#{Time.new.strftime('%H:%M:%S')}  " : ""
         message = "#{time}#{ActiveSupport::BufferedLogger.severity_name(severity)}  #{message}"
         
-        # make sure every line starts with the pid so we can use grep to
-        # isolate output from one process, gsub works even when the output 
-        # contains "\n", though there's probably a small performance cost
-        message = message.gsub(/^/, "#{@@pid}  ") if @@verbose
+        # Make sure every line has the PID and hostname and custom string 
+        # so we can use grep to isolate output from one process or server.
+        # gsub works even when the output contains "\n", though there's
+        # probably a small performance cost.
+        message = message.gsub(/^/, @@line_prefix) if @@verbose
+        
         add_without_extra_info(severity, message, progname, &block)
       end
       
