@@ -150,6 +150,8 @@ h2. How does it work?
 
 It works by modifying ActiveSupport::BufferedLogger (the Rails logger class).
 
+NOTE: it uses class variables to store the PID, I'm not sure, but I suspect that might be a problem with Passenger "smart spawning". Please let me know if you can confirm or deny this.
+
 
 h2. License
 
