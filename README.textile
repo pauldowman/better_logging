@@ -124,7 +124,7 @@ h2. Configuration
 
 By default it behaves differently in development mode, it doesn't log the time, process ID or hostname. If RAILS_ENV is not "development" those will be logged.
 
-There are two options that can be set, add these lines to an initializer:
+There are some options that can be set, add these lines to an initializer:
 
 @PaulDowman::RailsPlugins::BetterLogging.verbose = false@
 * This suppresses printing of the hostname, process ID and timestamp. This defaults to false in development mode, true otherwise.
