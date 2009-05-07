@@ -1,5 +1,7 @@
 h1. "Better Logging" Rails plugin
 
+"http://github.com/pauldowman/better_logging":http://github.com/pauldowman/better_logging
+
 This is a Rails plugin that improves the log format, and adds an optional "Exception" parameter to the warn() and error() methods to print a stack trace automatically.
 
 h2. Improved log format
@@ -159,10 +161,10 @@ This is distributed under a Creative Commons "Attribution-Share Alike" license. 
 "http://creativecommons.org/licenses/by-sa/3.0/":http://creativecommons.org/licenses/by-sa/3.0/
 
 
-h2. Reporting bugs
+h2. Bugs?
 
 This was written by "Paul Dowman":http://pauldowman.com/.
 
-Please let me know if you find any bugs, my contact info is here: "http://pauldowman.com/contact/":http://pauldowman.com/contact/
+Please let me know if you find any bugs, file a "bug report":http://github.com/pauldowman/better_logging/issues or, if you don't have a GitHub account then "contact me directly":http://pauldowman.com/contact/
 
 Or even better, send me a patch or GitHub pull request!
