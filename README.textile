@@ -165,6 +165,6 @@ h2. Bugs?
 
 This was written by "Paul Dowman":http://pauldowman.com/.
 
-Please let me know if you find any bugs, file a "bug report":http://github.com/pauldowman/better_logging/issues or, if you don't have a GitHub account then "contact me directly":http://pauldowman.com/contact/
+Please let me know if you find any bugs. File a "bug report":http://github.com/pauldowman/better_logging/issues or, if you don't have a GitHub account then "contact me directly":http://pauldowman.com/contact/.
 
 Or even better, send me a patch or GitHub pull request!
