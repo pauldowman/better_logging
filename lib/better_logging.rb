@@ -63,7 +63,11 @@ module PaulDowman
         @@hostname_maxlen = integer
         @@line_prefix = format_line_prefix
       end
-            
+      
+      # TODO does this break with Passenger smart spawning? The PID should be 
+      # different for each Rails instance, but if they're forked after this
+      # class is initialized that won't happen, will it?
+      # Maybe using class variables is a bad idea.
       def self.format_line_prefix
         if @@full_hostname.length < @@hostname_maxlen
           hostname = @@full_hostname
