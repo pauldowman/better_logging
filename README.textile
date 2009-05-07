@@ -101,6 +101,14 @@ h3. Adding a timestamp
 
 This should be pretty obvious, but the log file isn't too useful for debugging errors if you don't know what time anything happened. The first line printed by each Rails action does include a timestamp, but it's common to have other processes that aren't responding to web requests, and these are likely printing to your Rails log also (e.g. a background queue, etc).
 
+h3. Adding a custom string
+
+You can also add a custom string that will appear as the first column in the output, for example:
+
+<pre>
+my-custom-string  igserver-7.27471   13:27:04  INFO   Completed in 164ms (View: 116, DB: 21) | 200 OK [http://localhost/people/1]
+</pre>
+
 
 h2. Why not log to syslog?
 
@@ -123,6 +131,9 @@ There are two options that can be set, add these lines to an initializer:
 
 @PaulDowman::RailsPlugins::BetterLogging.hostname_maxlen = 15@
 * This sets the maximum number of characters of the hostname that will be printed. The beginning of the hostname is truncated, rather than the end, because often the end of the hostname is more unique than the beginning. The default is 10.
+
+@PaulDowman::RailsPlugins::BetterLogging.custom = "my-custom-string"@
+* This sets a custom string that will be printed at the beginning of the output, if desired.
 
 
 h2. Viewing log files
