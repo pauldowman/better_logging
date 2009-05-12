@@ -8,7 +8,7 @@ h2. Improved log format
 
 It adds severity level (with colour, if ActiveRecord::Base.colorize_logging == true), hostname and process ID to each log line, and it and adds warn() and exception() methods that take an exception as an argument and print the stack trace.
 
-For example, here's how the default format looks:
+For example, here's how the Rails log looks normally, without the better_logging plugin installed:
 
 <pre>
 Session ID: 7eeb00aa62b395698a28bf033e56b7c5
