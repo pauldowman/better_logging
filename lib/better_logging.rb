@@ -10,19 +10,6 @@ module PaulDowman
     module BetterLogging
       
       LENGTH = ActiveSupport::BufferedLogger::Severity.constants.map{|c| c.to_s.length}.max
-
-      # The following are cached as class variables for speed:
-
-      @@pid = $$
-      @@line_prefix = format_line_prefix
-
-      # These are configurable, put something like the following in an initializer:
-      #   PaulDowman::RailsPlugins::BetterLogging.verbose = false
-      @@verbose = RAILS_ENV != "development"
-      @@full_hostname = get_hostname
-      @@hostname_maxlen = 10
-      @@custom = nil
-
       
       def self.included(base)
         base.class_eval do
@@ -92,7 +79,21 @@ module PaulDowman
       def self.get_hostname
         `hostname -s`.strip
       end
-                  
+      
+      # The following are cached as class variables for speed.
+
+      # These are configurable, put something like the following in an initializer:
+      #   PaulDowman::RailsPlugins::BetterLogging.verbose = false
+      @@verbose = RAILS_ENV != "development"
+      @@full_hostname = get_hostname
+      @@hostname_maxlen = 10
+      @@custom = nil
+      
+      # These are not configurable
+      @@pid = $$
+      @@line_prefix = format_line_prefix
+
+            
       # the cached pid can be wrong after a fork(), this checks if it has changed and
       # re-caches the line_prefix
       def update_pid
