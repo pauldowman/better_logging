@@ -64,10 +64,6 @@ module PaulDowman
         @@line_prefix = format_line_prefix
       end
       
-      # TODO does this break with Passenger smart spawning? The PID should be 
-      # different for each Rails instance, but if they're forked after this
-      # class is initialized that won't happen, will it?
-      # Maybe using class variables is a bad idea.
       def self.format_line_prefix
         if @@full_hostname.length < @@hostname_maxlen
           hostname = @@full_hostname
@@ -75,7 +71,7 @@ module PaulDowman
           hostname = @@full_hostname[-(@@hostname_maxlen)..-1]
         end
         
-        line_prefix = sprintf("%1$*2$s", "#{hostname}.#{$$}  ", -(7 + hostname.length))
+        line_prefix = sprintf("%1$*2$s", "#{hostname}.#{@@pid}  ", -(7 + hostname.length))
         line_prefix = "#{@@custom}  #{line_prefix}" if @@custom
         return line_prefix
       end
@@ -84,14 +80,30 @@ module PaulDowman
         `hostname -s`.strip
       end
       
-      # set some default values:
+      # The following are cached as class variables for speed.
+
+      @@pid = $$
+      @@line_prefix = format_line_prefix
+
+      # These are configurable, put something like the following in an initializer:
+      #   PaulDowman::RailsPlugins::BetterLogging.verbose = false
       @@verbose = RAILS_ENV != "development"
       @@full_hostname = get_hostname
       @@hostname_maxlen = 10
       @@custom = nil
-      @@line_prefix = format_line_prefix
+
+            
+      # the cached pid can be wrong after a fork(), this checks if it has changed and
+      # re-caches the line_prefix
+      def update_pid
+        if @@pid != $$
+          @@pid = $$
+          @@line_prefix = format_line_prefix
+        end
+      end
       
       def add_with_extra_info(severity, message = nil, progname = nil, &block)
+        update_pid
         time = @@verbose ? "#{Time.new.strftime('%H:%M:%S')}  " : ""
         message = "#{time}#{ActiveSupport::BufferedLogger.severity_name(severity)}  #{message}"
         
