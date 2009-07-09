@@ -99,7 +99,7 @@ module PaulDowman
       def update_pid
         if @@pid != $$
           @@pid = $$
-          @@line_prefix = format_line_prefix
+          @@line_prefix = BetterLogging.format_line_prefix
         end
       end
       
