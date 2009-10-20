@@ -28,7 +28,7 @@ module PaulDowman
           if_stmts += <<-EOT
             if severity == #{c}
               severity_name = sprintf("%1$*2$s", "#{c}", #{LENGTH * -1})
-              if ActiveRecord::Base.colorize_logging
+              if defined?(ActiveRecord) && ActiveRecord::Base.colorize_logging
                 if severity == INFO
                   severity_name = "\033[32m" + severity_name + "\033[0m"
                 elsif severity == WARN
