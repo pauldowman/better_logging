@@ -28,7 +28,13 @@ module PaulDowman
           if_stmts += <<-EOT
             if severity == #{c}
               severity_name = sprintf("%1$*2$s", "#{c}", #{LENGTH * -1})
-              if defined?(ActiveRecord) && ActiveRecord::Base.colorize_logging
+              use_colour = false
+              if Rails.version.to_i >= 3
+                use_colour = true if ActiveSupport::LogSubscriber.colorize_logging
+              else
+                use_colour = true if defined?(ActiveRecord) && ActiveRecord::Base.colorize_logging
+              end
+              if use_colour
                 if severity == INFO
                   severity_name = "\033[32m" + severity_name + "\033[0m"
                 elsif severity == WARN
@@ -84,7 +90,7 @@ module PaulDowman
 
       # These are configurable, put something like the following in an initializer:
       #   PaulDowman::RailsPlugins::BetterLogging.verbose = false
-      @@verbose = RAILS_ENV != "development"
+      @@verbose = Rails.env != "development"
       @@full_hostname = get_hostname
       @@hostname_maxlen = 10
       @@custom = nil

@@ -6,7 +6,7 @@ This is a Rails plugin that improves the log format, and adds an optional "Excep
 
 h2. Improved log format
 
-It adds severity level (with colour, if ActiveRecord::Base.colorize_logging == true), hostname and process ID to each log line, and it and adds warn() and exception() methods that take an exception as an argument and print the stack trace.
+It adds severity level (with colour, if colour is enabled), hostname and process ID to each log line, and it and adds warn() and exception() methods that take an exception as an argument and print the stack trace.
 
 For example, here's how the Rails log looks normally, without the better_logging plugin installed:
 
@@ -119,7 +119,13 @@ It's a single point of failure, and it will become a scalability bottleneck. The
 
 h2. Installation
 
+h3. Rails 2.3.x
+
 @./script/plugin install git://github.com/pauldowman/better_logging.git@
+
+h3. Rails 3.0
+
+@rails plugin install git://github.com/pauldowman/better_logging.git@
 
 
 h2. Configuration
