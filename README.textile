@@ -6,7 +6,7 @@ This is a Rails plugin that improves the log format, and adds an optional "Excep
 
 h2. Improved log format
 
-It adds severity level (with colour, if colour is enabled), hostname and process ID to each log line, and it and adds warn() and exception() methods that take an exception as an argument and print the stack trace.
+It adds severity level (with colour, if colour is enabled), time (in "ISO8601 format":http://en.wikipedia.org/wiki/ISO_8601), hostname and process ID to each log line, and it and adds warn() and exception() methods that take an exception as an argument and print the stack trace.
 
 For example, here's how the Rails log looks normally, without the better_logging plugin installed:
 
@@ -41,24 +41,24 @@ INFO   Completed in 164ms (View: 116, DB: 21) | 200 OK [http://localhost/people/
 And here's how it would look with the better_logging plugin installed in production mode, on a host named "akash", with process id 27471:
 
 <pre>
-akash.27471   13:27:04  INFO   Session ID: 7eeb00aa62b395698a28bf033e56b7c5
-akash.27471   13:27:04  INFO   Parameters: {"action"=>"show", "id"=>"1", "controller"=>"people"}
-akash.27471   13:27:04  INFO   Rendering template within layouts/application
-akash.27471   13:27:04  INFO   Rendering people/show
-akash.27471   13:27:04  INFO   Adding Cache-Control header
-akash.27471   13:27:04  INFO   Completed in 164ms (View: 116, DB: 21) | 200 OK [http://localhost/people/1]
+akash.27471   2011-10-14T15:39:17.063613-04:00  INFO   Session ID: 7eeb00aa62b395698a28bf033e56b7c5
+akash.27471   2011-10-14T15:39:17.063613-04:00  INFO   Parameters: {"action"=>"show", "id"=>"1", "controller"=>"people"}
+akash.27471   2011-10-14T15:39:17.063613-04:00  INFO   Rendering template within layouts/application
+akash.27471   2011-10-14T15:39:17.063613-04:00  INFO   Rendering people/show
+akash.27471   2011-10-14T15:39:17.063613-04:00  INFO   Adding Cache-Control header
+akash.27471   2011-10-14T15:39:17.063613-04:00  INFO   Completed in 164ms (View: 116, DB: 21) | 200 OK [http://localhost/people/1]
 </pre>
 
 
 And here's how it would look in production mode on a host with a long name. This host name is "myreallybigserver-7.mydomain.com".
 
 <pre>
-igserver-7.27471   13:27:04  INFO   Session ID: 7eeb00aa62b395698a28bf033e56b7c5
-igserver-7.27471   13:27:04  INFO   Parameters: {"action"=>"show", "id"=>"1", "controller"=>"people"}
-igserver-7.27471   13:27:04  INFO   Rendering template within layouts/application
-igserver-7.27471   13:27:04  INFO   Rendering people/show
-igserver-7.27471   13:27:04  INFO   Adding Cache-Control header
-igserver-7.27471   13:27:04  INFO   Completed in 164ms (View: 116, DB: 21) | 200 OK [http://localhost/people/1]
+igserver-7.27471   2011-10-14T15:39:17.063613-04:00  INFO   Session ID: 7eeb00aa62b395698a28bf033e56b7c5
+igserver-7.27471   2011-10-14T15:39:17.063613-04:00  INFO   Parameters: {"action"=>"show", "id"=>"1", "controller"=>"people"}
+igserver-7.27471   2011-10-14T15:39:17.063613-04:00  INFO   Rendering template within layouts/application
+igserver-7.27471   2011-10-14T15:39:17.063613-04:00  INFO   Rendering people/show
+igserver-7.27471   2011-10-14T15:39:17.063613-04:00  INFO   Adding Cache-Control header
+igserver-7.27471   2011-10-14T15:39:17.063613-04:00  INFO   Completed in 164ms (View: 116, DB: 21) | 200 OK [http://localhost/people/1]
 </pre>
 
 Note that the hostname & process ID is added to the beginning of each line of a multi-line log statement. So even if you call logger.error() with a string that has newlines in it, the host & process ID will be added to each line, not only the first. 
@@ -108,7 +108,7 @@ h3. Adding a custom string
 You can also add a custom string that will appear as the first column in the output, for example:
 
 <pre>
-my-custom-string  igserver-7.27471   13:27:04  INFO   Completed in 164ms (View: 116, DB: 21) | 200 OK [http://localhost/people/1]
+my-custom-string  igserver-7.27471   2011-10-14T15:39:17.063613-04:00  INFO   Completed in 164ms (View: 116, DB: 21) | 200 OK [http://localhost/people/1]
 </pre>
 
 
