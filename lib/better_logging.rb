@@ -111,7 +111,7 @@ module PaulDowman
       
       def add_with_extra_info(severity, message = nil, progname = nil, &block)
         update_pid
-        time = @@verbose ? "#{Time.new.strftime('%H:%M:%S')}  " : ""
+        time = @@verbose ? "#{Time.now.iso8601(6)}  " : ""
         message = "#{time}#{ActiveSupport::BufferedLogger.severity_name(severity)}  #{message}"
         
         # Make sure every line has the PID and hostname and custom string 
