@@ -76,7 +76,7 @@ For example:
   begin
     # do something that raises an exception
   rescue Exception => e
-    log.error "Oops", e
+    Rails.logger.error "Oops", e
   end
 </pre>
 
