@@ -127,6 +127,11 @@ h3. Rails 3.0
 
 @rails plugin install git://github.com/pauldowman/better_logging.git@
 
+h3. Rails 3.2
+
+Add to your Gemfile:
+@gem 'better_logging'@
+
 
 h2. Configuration
 
