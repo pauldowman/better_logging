@@ -148,7 +148,7 @@ h2. Requirements
 
 Rails 3.0+.
 
-I haven't tested this on Rails 2.3.x since it became a RubyGem, so it might not work and I won't continue to support Rails 2. However, you can use the [Rails-2.3 branch](https://github.com/pauldowman/better_logging/tree/Rails-2.3) even though it probably won't be updated.
+I haven't tested this on Rails 2.3.x since it became a RubyGem, so it might not work and I won't continue to support Rails 2. However, you can use the "Rails-2.3 branch":https://github.com/pauldowman/better_logging/tree/Rails-2.3 even though it probably won't be updated.
 
 
 h2. How does it work?
