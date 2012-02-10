@@ -1,5 +1,4 @@
 require 'active_support'
-require 'better_logging/version'
 require 'better_logging/better_logging'
 
 module BetterLogging

@@ -1,15 +1,14 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "better_logging/version"
 
 Gem::Specification.new do |s|
   s.name        = "better_logging"
-  s.version     = BetterLogging::VERSION
-  s.authors     = ["pauldowman"]
+  s.version     = "1.0.0"
+  s.authors     = ["Paul Dowman"]
   s.email       = ["paul@pauldowman.com"]
   s.homepage    = "https://github.com/pauldowman/better_logging"
   s.summary     = %q{Better logging for Rails}
-  s.description = %q{This is a Rails plugin that improves the log format, and adds an optional “Exception” parameter to the warn() and error() methods to print a stack trace automatically.}
+  s.description = %q{A Rails plugin that improves the log format, and adds an optional “Exception” parameter to the warn() and error() methods to print a stack trace automatically.}
 
   s.rubyforge_project = "better_logging"
 
