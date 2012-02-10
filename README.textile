@@ -2,6 +2,8 @@ h1. "Better Logging" Rails plugin
 
 "http://github.com/pauldowman/better_logging":http://github.com/pauldowman/better_logging
 
+_NOTE: this is the outdated Rails 2.3.x branch. For Rails 3.0+ use the "master branch":https://github.com/pauldowman/better_logging._
+
 This is a Rails plugin that improves the log format, and adds an optional "Exception" parameter to the warn() and error() methods to print a stack trace automatically.
 
 h2. Improved log format
