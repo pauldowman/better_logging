@@ -119,16 +119,6 @@ It's a single point of failure, and it will become a scalability bottleneck. The
 
 h2. Installation
 
-h3. Rails 2.3.x
-
-@./script/plugin install git://github.com/pauldowman/better_logging.git@
-
-h3. Rails 3.0
-
-@rails plugin install git://github.com/pauldowman/better_logging.git@
-
-h3. Rails 3.2
-
 Add to your Gemfile:
 @gem 'better_logging'@
 
@@ -156,7 +146,7 @@ On OS X I like to use Console.app to view log files. It can load huge files easi
 
 h2. Requirements
 
-This has only been tested with Rails 2.2 so far. It probably won't work with Rails 1.x. If you try it with another version, please let me know and I'll update this document (and try to fix the problem).
+This has only been tested with Rails 2.2 so far. It probably won't work with Rails 1.x. If you try it with another tallersion, please let me know and I'll update this document (and try to fix the problem).
 
 
 h2. How does it work?
