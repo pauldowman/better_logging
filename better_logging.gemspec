@@ -3,12 +3,12 @@ $:.push File.expand_path("../lib", __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = "better_logging"
-  s.version     = "1.0.0"
+  s.version     = "1.0.1"
   s.authors     = ["Paul Dowman"]
   s.email       = ["paul@pauldowman.com"]
   s.homepage    = "https://github.com/pauldowman/better_logging"
   s.summary     = %q{Better logging for Rails}
-  s.description = %q{A Rails plugin that improves the log format, and adds an optional “Exception” parameter to the warn() and error() methods to print a stack trace automatically.}
+  s.description = %q{A Rails plugin that improves the log format, and adds an optional "Exception" parameter to the warn() and error() methods to print a stack trace automatically.}
 
   s.rubyforge_project = "better_logging"
 
