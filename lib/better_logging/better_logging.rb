@@ -18,7 +18,7 @@ module PaulDowman
       
       def self.included(base)
         base.class_eval do
-          alias_method_chain :call, :extra_info
+          alias_method_chain :add, :extra_info
           alias_method_chain :error, :exception_param
           alias_method_chain :warn, :exception_param
         end
@@ -119,7 +119,7 @@ module PaulDowman
         end
       end
       
-      def call_with_extra_info(severity, message = nil, progname = nil, &block)
+      def add_with_extra_info(severity, message = nil, progname = nil, &block)
         update_pid
         time = @@verbose ? "#{Time.now.iso8601(@@fraction_digits)} " : ""
 
@@ -139,11 +139,11 @@ module PaulDowman
         # probably a small performance cost.
         message = message.gsub(/^/, @@line_prefix) if @@verbose
         
-        call_without_extra_info(severity, 'message', progname, &block)
+        add_without_extra_info(severity, 'hello', progname, &block)
       end
       
       
-      # call an optional second parameter to the error & warn methods to allow a stack trace:
+      # add an optional second parameter to the error & warn methods to allow a stack trace:
             
       def error_with_exception_param(message, exception = nil)
         message += "\n#{exception.inspect}\n#{exception.backtrace.join("\n")}" if exception
