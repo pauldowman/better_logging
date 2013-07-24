@@ -1,4 +1,4 @@
-# This module, when included into ActiveSupport::BufferedLogger, improves the
+# This module, when included into ACTIVE_SUPPORT_LOGGER, improves the
 # logging format. See the README file for more info.
 #
 # This is distributed under a Creative Commons "Attribution-Share Alike"
@@ -8,8 +8,13 @@
 module PaulDowman
   module RailsPlugins
     module BetterLogging
+      begin
+        ACTIVE_SUPPORT_LOGGER = ActiveSupport::Logger
+      rescue
+        ACTIVE_SUPPORT_LOGGER = ActiveSupport::BufferedLogger
+      end
       
-      LENGTH = ActiveSupport::BufferedLogger::Severity.constants.map{|c| c.to_s.length}.max
+      LENGTH = ACTIVE_SUPPORT_LOGGER::Severity.constants.map{|c| c.to_s.length}.max
       
       def self.included(base)
         base.class_eval do
@@ -24,7 +29,7 @@ module PaulDowman
         # Most of this is done with class_eval so it should only be done once 
         # while the class is being loaded.
         if_stmts = ""
-        for c in ActiveSupport::BufferedLogger::Severity.constants
+        for c in ACTIVE_SUPPORT_LOGGER::Severity.constants
           if_stmts += <<-EOT
             if severity == #{c}
               severity_name = sprintf("%1$*2$s", "#{c}", #{LENGTH * -1})
@@ -126,7 +131,7 @@ module PaulDowman
             message = yield
           end
         end
-        message = "#{time}#{ActiveSupport::BufferedLogger.severity_name(severity)} #{message}"
+        message = "#{time}#{ACTIVE_SUPPORT_LOGGER.severity_name(severity)} #{message}"
         
         # Make sure every line has the PID and hostname and custom string 
         # so we can use grep to isolate output from one process or server.
