@@ -139,7 +139,7 @@ module PaulDowman
         # probably a small performance cost.
         message = message.gsub(/^/, @@line_prefix) if @@verbose
         
-        add_without_extra_info(severity, 'hello', progname, &block)
+        add_without_extra_info(severity, message, progname, &block)
       end
       
       
